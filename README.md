@@ -7,12 +7,14 @@ Assume you have a "Products" entity with "MyDBContext" in your project to test
 
 In your test project create a new model - TestProducts
 TestProducts.cs:
+
   public class TestProducts :TestDbSet<Database.Models.Products>
     {
     }
 
 Create a new TestMyDbContext:
 TestDbContext.cs
+
   public class TestMyDbContext : IMyDBContext
     {
         public DbSet<Products> Products { get; set; }
