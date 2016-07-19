@@ -9,8 +9,8 @@ In your test project create a new model - TestProducts
 TestProducts.cs:
 
   public class TestProducts :TestDbSet<Database.Models.Products>
-    {
-    }
+  {
+  }
 
 Create a new TestMyDbContext:
 TestDbContext.cs
@@ -41,6 +41,6 @@ TestDbContext.cs
     
 Now in your tests you can mock the DBContext.  I am using castle windsor 
   
-  var dbContent = _container.Resolve<IStrategyDbContext>();
+ var dbContent = _container.Resolve<IStrategyDbContext>();
 
 and inject where ever you want to.
