@@ -8,14 +8,14 @@ Assume you have a "Products" entity with "MyDBContext" in your project to test
 In your test project create a new model - TestProducts
 TestProducts.cs:
 
-  public class TestProducts :TestDbSet<Database.Models.Products>
-  {
-  }
+    public class TestProducts :TestDbSet<Database.Models.Products>
+    {
+    }
 
 Create a new TestMyDbContext:
 TestDbContext.cs
 
-  public class TestMyDbContext : IMyDBContext
+    public class TestMyDbContext : IMyDBContext
     {
         public DbSet<Products> Products { get; set; }
         
@@ -41,6 +41,8 @@ TestDbContext.cs
     
 Now in your tests you can mock the DBContext.  I am using castle windsor 
   
- var dbContent = _container.Resolve<IStrategyDbContext>();
+    {
+      var dbContent = _container.Resolve<IStrategyDbContext>();
+    }
 
 and inject where ever you want to.
