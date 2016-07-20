@@ -46,3 +46,36 @@ Now in your tests you can mock the DBContext.  I am using castle windsor
     }
 
 and inject where ever you want to.
+
+Lets say you have a controller ProductsController.cs
+
+    [RoutePrefix("api/products")]
+    public class ProductsController : ApiController
+    {
+        private readonly IMyDbContext _context;
+        
+        public ProductsController(IMyDbContext dbContext)
+        {
+            _context = dbContext;
+        }
+        
+        [HttpPost]
+        [Route("create")]
+        public async Task<IHttpActionResult> Create(ProductModel model)
+        {
+            _context.Products.Add(new Product{
+            //code 
+            //code
+            });
+        }
+    }
+
+so to test the controller in your test file, you would simply:
+    
+    var dbContext = _container.Resolve<IStrategyDbContext>();
+    var proudctContoroller = new ProductsController(dbContext);
+    await productController.Create(new ProductModel());
+    
+    Assert.That(context.Products.Count(), Is.EqualTo(1));
+    Assert.That(context.Products.First().Name, Is.EqualTo("Name"));
+
