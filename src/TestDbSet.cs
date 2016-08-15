@@ -49,11 +49,24 @@ namespace TestWithEF
             return Activator.CreateInstance<TDerivedEntity>();
         }
 
-        public override ObservableCollection<T> Local
-        {
-            get { return new ObservableCollection<T>(_data); }
-        }
+        public override ObservableCollection<T> Local => new ObservableCollection<T>(_data);
 
+        public override IEnumerable<T> AddRange(IEnumerable<T> range)
+        {
+            foreach (var item in range)
+            {
+                _data.Add(item);
+            }
+            return _data;
+        }
+        public override IEnumerable<T> RemoveRange(IEnumerable<T> range)
+        {
+            foreach (var item in range)
+            {
+                _data.Remove(item);
+            }
+            return _data;
+        }
         Type IQueryable.ElementType
         {
             get { return _query.ElementType; }
@@ -78,5 +91,7 @@ namespace TestWithEF
         {
             return _data.GetEnumerator();
         }
+
+        
     }
 }
