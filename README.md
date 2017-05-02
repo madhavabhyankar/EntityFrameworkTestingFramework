@@ -1,3 +1,5 @@
+<img src="https://ci.appveyor.com/api/projects/status/github/madhavabhyankar/EntityFrameworkTestingFramework?branch=master&svg=true"/>
+
 # EntityFrameworkTestingFramework
 TestWithEF 1.0.0
 
